@@ -1,0 +1,3 @@
+https://t.me/daily_quize_bot
+
+*wait for 5 secs, if the bot didn't responds expect that the free hosting expired (^^)
