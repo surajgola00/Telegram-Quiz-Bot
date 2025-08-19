@@ -4,7 +4,7 @@ A fun and interactive **Telegram Quiz Bot** built using **Python, Telebot, and M
 It allows users to test their knowledge across multiple categories, track their scores, and compete with friends.  
 Admins can upload new quiz questions, manage logs, and view users.  
 
-👉 Try it here: [QuizziBot on Telegram](https://t.me/daily_quize_bot) :contentReference[oaicite:0]{index=0}  
+👉 Try it here: [QuizziBot on Telegram](https://t.me/daily_quize_bot)  
 
 ---
 
@@ -67,11 +67,14 @@ Admins have access to additional commands and tools for managing the bot and use
 
 ## 📂 Project Structure  
 
-├── main.py # Main bot logic & commands
-├── database.py # Database operations (users, scores, questions, logs)
-├── details.py # Bot token, admin ID, DB credentials (keep this secret!)
-├── botmessages.py # Predefined user-friendly messages
+```
+├── main.py           # Main bot logic & commands
+├── database.py       # Database operations (users, scores, questions, logs)
+├── details.py        # Bot token, admin ID, DB credentials (keep this secret!)
+├── botmessages.py    # Predefined user-friendly messages
 ├── BotAccessLink.txt # Link to access the deployed bot
+├── questions.json    # Sample quiz questions file
+```
 
 ---
 
@@ -80,89 +83,118 @@ Admins have access to additional commands and tools for managing the bot and use
 1. **Clone this repository**  
    ```bash
    git clone https://github.com/surajgola00/Telegram-Quiz-Bot
-   cd QuizziBot
+   cd Telegram-Quiz-Bot
+   ```
 
-**Install dependencies**
-pip install pyTelegramBotAPI flask mysql-connector-python
+2. **Install dependencies**  
+   ```bash
+   pip install pyTelegramBotAPI flask mysql-connector-python
+   ```
 
-**Configure details.py**
-Fill in your own values:
-TOKEN = "your-telegram-bot-token"
-admin_id = 123456789
-secret = "yoursecret"
-url = "https://yourserver.com/" + secret
+3. **Configure `details.py`**  
+   Fill in your own values:  
+   ```python
+   TOKEN = "your-telegram-bot-token"
+   admin_id = 123456789
+   secret = "yoursecret"
+   url = "https://yourserver.com/" + secret
 
-config = {
-  "host": "localhost",
-  "user": "your_db_user",
-  "password": "your_db_password",
-  "database": "quizdb"
-}
-Setup MySQL Database
-Create a database and tables:
+   config = {
+     "host": "localhost",
+     "user": "your_db_user",
+     "password": "your_db_password",
+     "database": "quizdb"
+   }
+   ```
 
-CREATE DATABASE quizdb;
-USE quizdb;
+4. **Setup MySQL Database**  
+   ```sql
+   CREATE DATABASE quizdb;
+   USE quizdb;
 
-CREATE TABLE users (
-    tg_id BIGINT PRIMARY KEY,
-    user_name VARCHAR(255),
-    name VARCHAR(255)
-);
+   CREATE TABLE users (
+       tg_id BIGINT PRIMARY KEY,
+       user_name VARCHAR(255),
+       name VARCHAR(255)
+   );
 
-CREATE TABLE user_score (
-    tg_id BIGINT PRIMARY KEY,
-    -- Add one column per quiz category
-    science INT DEFAULT 1,
-    history INT DEFAULT 1
-);
+   CREATE TABLE user_score (
+       tg_id BIGINT PRIMARY KEY,
+       -- Add one column per quiz category
+       science INT DEFAULT 1,
+       history INT DEFAULT 1
+   );
 
-CREATE TABLE questions (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    category VARCHAR(255),
-    q_no INT,
-    q TEXT,
-    ans VARCHAR(255),
-    options TEXT,
-    hint TEXT,
-    info TEXT
-);
+   CREATE TABLE questions (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       category VARCHAR(255),
+       q_no INT,
+       q TEXT,
+       ans VARCHAR(255),
+       options TEXT,
+       hint TEXT,
+       info TEXT
+   );
 
-CREATE TABLE error_logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    error_message TEXT,
-    location VARCHAR(255),
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+   CREATE TABLE error_logs (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       error_message TEXT,
+       location VARCHAR(255),
+       timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   );
+   ```
 
-**Run the bot**
-python main.py
+5. **Run the bot**  
+   ```bash
+   python main.py
+   ```
 
-**📤 Adding New Questions**
-Prepare a JSON file in this format:
+---
 
-[
-  {
-    "category": "science",
-    "q": "What is the boiling point of water?",
-    "ans": "100°C",
-    "options": ["90°C", "100°C", "120°C", "80°C"],
-    "hint": "It’s the standard temperature at sea level.",
-    "info": "Water boils at 100°C under standard atmospheric pressure."
-  }
-]
-Send the file to the bot as Admin.
-* SAMPLE QUESTIONS FILE IS AVAILABLE AS questions.json
-The bot will automatically add it to the database.
+## 📤 Adding New Questions  
 
-📸 Demo
+- Prepare a JSON file in this format:  
+   ```json
+   [
+     {
+       "category": "science",
+       "q": "What is the boiling point of water?",
+       "ans": "100°C",
+       "options": ["90°C", "100°C", "120°C", "80°C"],
+       "hint": "It’s the standard temperature at sea level.",
+       "info": "Water boils at 100°C under standard atmospheric pressure."
+     }
+   ]
+   ```
+- Send the file to the bot as **Admin**.  
+- The bot will automatically add it to the database.  
 
-<img width="1311" height="614" alt="image" src="https://github.com/user-attachments/assets/6c35dc0f-7f66-4535-86a1-42fe65f1618c" />
+📌 A **sample file is included** → [`questions.json`](questions.json).  
 
+---
 
-👨‍💻 Author
-Developed by Your Suraj Gola
-Contributions & suggestions are welcome!
+## 🤝 Contributing Guidelines  
 
-🛡️ License
-This project is licensed under the MIT License – feel free to use, modify, and share.
+Want to add new quiz questions or categories?  
+1. Fork this repo 🍴  
+2. Add your questions in a new **`questions.json`** file following the sample format.  
+3. Submit a Pull Request ✅  
+
+---
+
+## 📸 Demo  
+
+<img width="800" alt="quiz-demo" src="https://github.com/user-attachments/assets/6c35dc0f-7f66-4535-86a1-42fe65f1618c" />
+
+---
+
+## 👨‍💻 Author  
+
+Developed by **Suraj Gola**  
+Contributions & suggestions are welcome!  
+
+---
+
+## 🛡️ License  
+
+This project is licensed under the **MIT License** – feel free to use, modify, and share.  
