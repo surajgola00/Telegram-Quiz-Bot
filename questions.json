@@ -1,0 +1,18 @@
+[
+  {
+    "category": "science",
+    "q": "What is the chemical symbol for water?",
+    "ans": "H2O",
+    "options": ["O2", "H2O", "CO2", "NaCl"],
+    "hint": "It contains hydrogen and oxygen.",
+    "info": "Water is a molecule made up of two hydrogen atoms bonded to one oxygen atom."
+  },
+  {
+    "category": "history",
+    "q": "Who was the first President of the United States?",
+    "ans": "George Washington",
+    "options": ["Abraham Lincoln", "George Washington", "John Adams", "Thomas Jefferson"],
+    "hint": "He served from 1789 to 1797.",
+    "info": "George Washington was the first U.S. President and is often called the 'Father of His Country'."
+  }
+]
